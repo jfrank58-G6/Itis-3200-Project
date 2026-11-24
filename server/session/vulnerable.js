@@ -25,7 +25,9 @@ function createVulnerableSession() {
     secret: 'itis-3200-vulnerable-demo-secret',
     resave: false,
     saveUninitialized: false,
-    // cookie: { ... }  <-- fill this in
+    cookie: {
+      httpOnly: false,
+    },
   });
 }
 
