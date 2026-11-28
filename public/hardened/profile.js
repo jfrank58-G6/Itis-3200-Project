@@ -18,7 +18,10 @@ function renderBioSafe(bio) {
   // tests/render.test.js expects the result NOT to contain the substring "<script".
   //
   // Stub on purpose returns the raw string so the test fails until you fix it.
-  return String(bio);
+  return String(bio ?? '')
+    .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;');
 }
 
 /**
@@ -29,7 +32,7 @@ function renderBioSafe(bio) {
 function applyBioToPage(el, bio) {
   // TODO(zaheir): Use element.textContent (not innerHTML) so the bio
   // cannot run as HTML/JS. You can still call renderBioSafe for the tests.
-  el.innerHTML = renderBioSafe(bio);
+  el.textContent = String(bio ?? '');
 }
 
 function usernameFromPath() {
