@@ -18,7 +18,7 @@ function renderBioUnsafe(bio) {
   // tests/render.test.js expects the returned string to still contain "<script".
   //
   // Stub on purpose returns escaped junk so the test fails until you fix it.
-  return String(bio).replace(/</g, '&lt;');
+  return String(bio ?? '');
 }
 
 /**
@@ -29,7 +29,7 @@ function renderBioUnsafe(bio) {
 function applyBioToPage(el, bio) {
   // TODO(zaheir): Use innerHTML with renderBioUnsafe(bio) so stored XSS runs.
   // Example once helpers are done: el.innerHTML = renderBioUnsafe(bio);
-  el.textContent = renderBioUnsafe(bio);
+  el.innerHTML = renderBioUnsafe(bio);
 }
 
 function usernameFromPath() {
